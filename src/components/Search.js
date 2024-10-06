@@ -23,7 +23,7 @@ const Search = ({ location }) => {
         } else {
           setSearchResult(resultBooks);
           setSearchError(false);
-          syncBookShelf();
+          syncBookShelf(books, resultBooks);
         }
       });
     } else {
@@ -32,15 +32,15 @@ const Search = ({ location }) => {
   };
 
   const syncBookShelf = (books, searchResult) => {
+    console.log('Clicked book:', books);
     if (books && searchResult) {
       books.forEach(book => {
         searchResult.forEach(searchResultBook => {
           if (book.id === searchResultBook.id) {
-            searchResultBook.shelf = book.shelf
+            searchResultBook.shelf = book.shelf          
           }
         })
       });
-    
       setSearchResult(searchResult);
     }
   };  
